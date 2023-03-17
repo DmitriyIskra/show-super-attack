@@ -21,19 +21,11 @@ const character = {
   ],
 };
 
-export default function getSuperAttack(obj) {
-  const resultArray = [];
-
-  obj.special.forEach((el) => { 
-    if (el?.description) {
-      resultArray.push(el);
-    } else {
-      resultArray.push(el);
-      resultArray[resultArray.length - 1].description = 'Описание не доступно';
-    }
-  });
-
-  return resultArray;
+export default function getSuperAttack({ special }) {
+  const result = [];
+  special.forEach((element) => (element?.description ? result.push(element) : result.push({ ...element, description: 'Описание не доступно' })));
+  
+  return result;
 }
 
-// console.log(
+// console.log(getSuperAttack(character))
